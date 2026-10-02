@@ -1,0 +1,218 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nicolás Villarroel · AI for Medical Imaging</title>
+<meta name="description" content="Biomedical engineer building deep learning models and clinical software for mammography. IEEE SIME 2026.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f7f8fa; --surface:#ffffff; --text:#0f1720; --muted:#5b6673; --line:#e3e7ec;
+  --accent:#0b7a75; --accent-soft:#e3f3f2; --warn:#9a5b00; --warn-soft:#fdf3e2;
+  --mono:'JetBrains Mono',ui-monospace,monospace;
+}
+@media (prefers-color-scheme:dark){
+  :root{ --bg:#0c1116; --surface:#131a21; --text:#e6ebf0; --muted:#97a3af; --line:#24303b;
+    --accent:#4fd1c5; --accent-soft:#12302e; --warn:#f0b35a; --warn-soft:#2e2412; }
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:Inter,system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;font-size:16px}
+a{color:var(--accent);text-decoration:none} a:hover{text-decoration:underline}
+.wrap{max-width:960px;margin:0 auto;padding:0 20px}
+nav{position:sticky;top:0;z-index:10;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+nav .wrap{display:flex;align-items:center;justify-content:space-between;height:56px;gap:12px}
+.brand{font-weight:700;letter-spacing:-.01em;color:var(--text)}
+.links{display:flex;gap:20px;align-items:center;font-size:14px}
+.links a{color:var(--muted)} .links a:hover{color:var(--text);text-decoration:none}
+.lang{border:1px solid var(--line);background:var(--surface);color:var(--text);border-radius:6px;padding:4px 10px;font:500 13px var(--mono);cursor:pointer}
+@media (max-width:640px){.links a{display:none}}
+
+header{padding:88px 0 64px}
+.eyebrow{font:500 13px var(--mono);color:var(--accent);letter-spacing:.04em;text-transform:uppercase}
+h1{font-size:clamp(34px,6vw,54px);line-height:1.08;letter-spacing:-.03em;margin:14px 0 18px;font-weight:700}
+.lede{font-size:clamp(17px,2.2vw,20px);color:var(--muted);max-width:640px}
+.cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:30px}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:11px 18px;border-radius:8px;font-weight:600;font-size:15px;border:1px solid var(--line);background:var(--surface);color:var(--text)}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:#fff}
+@media (prefers-color-scheme:dark){.btn.primary{color:#04201e}}
+.btn:hover{text-decoration:none;filter:brightness(1.05)}
+
+section{padding:56px 0;border-top:1px solid var(--line)}
+h2{font-size:14px;font:600 13px var(--mono);text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin-bottom:24px}
+h3{font-size:22px;letter-spacing:-.015em;line-height:1.3}
+
+.pub{background:var(--surface);border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:10px;padding:26px}
+.badge{display:inline-block;font:500 12px var(--mono);padding:3px 9px;border-radius:999px;background:var(--accent-soft);color:var(--accent);margin-bottom:12px}
+.authors{color:var(--muted);font-size:14px;margin:8px 0 14px}
+.authors b{color:var(--text);font-weight:600}
+
+.grid{display:grid;gap:20px;grid-template-columns:1fr}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:26px;display:flex;flex-direction:column;gap:14px}
+.card p{color:var(--muted)}
+.card ul{padding-left:18px;color:var(--muted);font-size:15px} .card li{margin:4px 0}
+.card li b{color:var(--text);font-weight:600}
+.tags{display:flex;flex-wrap:wrap;gap:6px}
+.tag{font:500 12px var(--mono);padding:3px 8px;border:1px solid var(--line);border-radius:6px;color:var(--muted)}
+.card .links2{display:flex;gap:16px;font-weight:600;font-size:15px;margin-top:auto}
+
+.metrics{display:grid;grid-template-columns:repeat(auto-fit,minmax(135px,1fr));gap:10px}
+.metric{border:1px solid var(--line);border-radius:8px;padding:12px 14px}
+.metric .v{font:600 22px var(--mono);letter-spacing:-.02em}
+.metric .k{font-size:12.5px;color:var(--muted);line-height:1.35;margin-top:2px}
+.note{background:var(--warn-soft);color:var(--text);border-radius:8px;padding:12px 14px;font-size:14px}
+.note b{color:var(--warn)}
+
+.skills{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:20px}
+.skills h4{font-size:15px;margin-bottom:8px}
+.skills p{color:var(--muted);font-size:15px}
+
+.now{display:grid;grid-template-columns:auto 1fr;gap:18px;align-items:start}
+.pulse{width:10px;height:10px;border-radius:50%;background:var(--accent);margin-top:9px;box-shadow:0 0 0 0 var(--accent);animation:p 2s infinite}
+@keyframes p{70%{box-shadow:0 0 0 10px transparent}100%{box-shadow:0 0 0 0 transparent}}
+@media (prefers-reduced-motion:reduce){.pulse{animation:none}}
+.now p{color:var(--muted)}
+
+footer{padding:48px 0 64px;border-top:1px solid var(--line);color:var(--muted);font-size:14px}
+.contact{display:flex;flex-wrap:wrap;gap:12px;margin:18px 0 28px}
+[data-es]{display:none} html[lang=es] [data-es]{display:revert} html[lang=es] [data-en]{display:none}
+</style>
+</head>
+<body>
+
+<nav><div class="wrap">
+  <a class="brand" href="#top">N. Villarroel</a>
+  <div class="links">
+    <a href="#research"><span data-en>Research</span><span data-es>Investigación</span></a>
+    <a href="#projects"><span data-en>Projects</span><span data-es>Proyectos</span></a>
+    <a href="#skills"><span data-en>Skills</span><span data-es>Habilidades</span></a>
+    <a href="#contact"><span data-en>Contact</span><span data-es>Contacto</span></a>
+    <button class="lang" id="lang" aria-label="Switch language">ES</button>
+  </div>
+</div></nav>
+
+<main id="top">
+<header><div class="wrap">
+  <div class="eyebrow"><span data-en>Biomedical Engineer · AI for Medical Imaging</span><span data-es>Ingeniero Biomédico · IA en Imágenes Médicas</span></div>
+  <h1>Nicolás Villarroel</h1>
+  <p class="lede">
+    <span data-en>I build deep learning models and clinical software for mammography, from reading DICOM files and training detection models to the web tools that put the results in front of physicians.</span>
+    <span data-es>Desarrollo modelos de deep learning y software clínico para mamografía, desde la lectura de archivos DICOM y el entrenamiento de modelos de detección hasta las herramientas web que llevan los resultados al médico.</span>
+  </p>
+  <div class="cta">
+    <a class="btn primary" href="#projects"><span data-en>View projects</span><span data-es>Ver proyectos</span></a>
+    <a class="btn" href="https://github.com/nicovocal-jpg">GitHub ↗</a>
+    <a class="btn" href="mailto:nicovocal@live.com">Email</a>
+  </div>
+</div></header>
+
+<section id="research"><div class="wrap">
+  <h2><span data-en>Publication</span><span data-es>Publicación</span></h2>
+  <article class="pub">
+    <span class="badge">IEEE SIME 2026 · <span data-en>accepted</span><span data-es>aceptado</span></span>
+    <h3>Hybrid System for Computer-Aided Classification and Detection of Mammographic Lesions</h3>
+    <p class="authors"><b>N. Villarroel Vocal</b>, R. Martínez Severich, E. R. Ramos Silvestre, E. Calle Vives · Universidad Privada del Valle</p>
+    <p style="color:var(--muted)">
+      <span data-en>A two-stage CAD system: InceptionV3 classifies each mammogram as normal, mass or calcification, and YOLOv8 localizes the lesions. During peer review I rebuilt the dataset with a patient-level split (CBIS-DDSM + Mini-DDSM) to remove data leakage, and re-evaluated the models on it.</span>
+      <span data-es>Sistema CAD de dos etapas: InceptionV3 clasifica cada mamografía como normal, masa o calcificación, y YOLOv8 localiza las lesiones. Durante la revisión por pares reconstruí el dataset con partición a nivel paciente (CBIS-DDSM + Mini-DDSM) para eliminar el data leakage, y volví a evaluar los modelos.</span>
+    </p>
+    <div class="cta" style="margin-top:18px">
+      <a class="btn" href="https://github.com/nicovocal-jpg/mammo-cad-hybrid"><span data-en>Code</span><span data-es>Código</span> ↗</a>
+      <!-- <a class="btn" href="IEEE_XPLORE_URL">IEEE Xplore ↗</a> -->
+    </div>
+  </article>
+</div></section>
+
+<section id="projects"><div class="wrap">
+  <h2><span data-en>Featured projects</span><span data-es>Proyectos destacados</span></h2>
+  <div class="grid">
+
+    <article class="card">
+      <h3>Hybrid CAD for Mammographic Lesions</h3>
+      <p>
+        <span data-en>Classification and detection pipeline with reproducibility built in: a single global seed, every assumed hyperparameter logged, real early-stopping epochs recorded, and all test predictions saved, so confidence intervals, calibration and FROC can be computed without retraining.</span>
+        <span data-es>Pipeline de clasificación y detección pensado para ser reproducible: semilla global única, registro de todos los hiperparámetros asumidos, época real de early stopping y todas las predicciones del test guardadas, para calcular intervalos de confianza, calibración y FROC sin reentrenar.</span>
+      </p>
+      <div class="metrics">
+        <div class="metric"><div class="v">83.2%</div><div class="k"><span data-en>Accuracy · image-level split (paper)</span><span data-es>Accuracy · split por imagen (paper)</span></div></div>
+        <div class="metric"><div class="v">95.5%</div><div class="k"><span data-en>AUC · image-level split (paper)</span><span data-es>AUC · split por imagen (paper)</span></div></div>
+        <div class="metric"><div class="v">74.0%</div><div class="k"><span data-en>Accuracy · patient-level split (n=961)</span><span data-es>Accuracy · split por paciente (n=961)</span></div></div>
+        <div class="metric"><div class="v">31</div><div class="k"><span data-en>leaking patients found and removed</span><span data-es>pacientes con leakage detectados y corregidos</span></div></div>
+      </div>
+      <p class="note"><b><span data-en>Why two accuracies?</span><span data-es>¿Por qué dos accuracies?</span></b>
+        <span data-en>The first number was inflated because images of the same patient ended up in both train and test. The patient-level number is the honest estimate of generalization, and it's the one I'd trust.</span>
+        <span data-es>El primer número estaba inflado porque imágenes del mismo paciente quedaron en train y en test. El número a nivel paciente es la estimación honesta de generalización, y es en el que confío.</span></p>
+      <div class="tags"><span class="tag">TensorFlow/Keras</span><span class="tag">InceptionV3</span><span class="tag">YOLOv8</span><span class="tag">CBIS-DDSM</span><span class="tag">transfer learning</span></div>
+      <div class="links2"><a href="https://github.com/nicovocal-jpg/mammo-cad-hybrid">GitHub ↗</a></div>
+    </article>
+
+    <article class="card">
+      <h3>MammoCAD Web: DICOM Viewer + AI</h3>
+      <p>
+        <span data-en>My undergraduate thesis: a web platform where a physician uploads a mammography study, inspects it in a diagnostic viewer and runs three analyses with one click each.</span>
+        <span data-es>Mi proyecto de grado: una plataforma web donde el médico sube un estudio de mamografía, lo revisa en un visor diagnóstico y ejecuta tres análisis con un clic cada uno.</span>
+      </p>
+      <ul>
+        <li data-en><b>DICOM viewer</b> (Cornerstone.js): zoom, pan, magnifier, angle, regional window/level</li>
+        <li data-es><b>Visor DICOM</b> (Cornerstone.js): zoom, pan, lupa, ángulo, ventana/nivel por región</li>
+        <li data-en><b>Classification</b>: InceptionV3, normal / mass / calcification</li>
+        <li data-es><b>Clasificación</b>: InceptionV3, normal / masa / calcificación</li>
+        <li data-en><b>Detection</b>: YOLOv8 combined with a classical microcalcification detector, with boxes merged through an IoU graph</li>
+        <li data-es><b>Detección</b>: YOLOv8 combinado con un detector clásico de microcalcificaciones, con cajas fusionadas mediante un grafo de IoU</li>
+        <li data-en><b>Breast density</b>: segmentation + percentile thresholds mapped to 4 categories</li>
+        <li data-es><b>Densidad mamaria</b>: segmentación + umbrales por percentil en 4 categorías</li>
+        <li data-en><b>Roles</b>: admin / physician / support, bcrypt passwords, DICOM UID tracking</li>
+        <li data-es><b>Roles</b>: administrador / médico / soporte, contraseñas bcrypt, control de UIDs DICOM</li>
+      </ul>
+      <div class="tags"><span class="tag">Python</span><span class="tag">pydicom</span><span class="tag">OpenCV</span><span class="tag">PHP</span><span class="tag">MySQL</span><span class="tag">Cornerstone.js</span><span class="tag">pytest</span></div>
+      <div class="links2"><a href="https://github.com/nicovocal-jpg/mammocad-web">GitHub ↗</a></div>
+    </article>
+
+  </div>
+</div></section>
+
+<section id="skills"><div class="wrap">
+  <h2><span data-en>Toolbox</span><span data-es>Herramientas</span></h2>
+  <div class="skills">
+    <div><h4>Deep learning</h4><p>TensorFlow/Keras, PyTorch, Ultralytics YOLOv8, scikit-learn, transfer learning, segmentation (U-Net++, DeepLabv3+, Swin-UNet)</p></div>
+    <div><h4><span data-en>Medical imaging</span><span data-es>Imágenes médicas</span></h4><p>DICOM, pydicom, OpenCV, Cornerstone.js, CBIS-DDSM, INbreast</p></div>
+    <div><h4><span data-en>Evaluation</span><span data-es>Evaluación</span></h4><p><span data-en>Patient-level splits, leakage audits, AUC, mAP, reproducible training</span><span data-es>Splits por paciente, auditoría de leakage, AUC, mAP, entrenamiento reproducible</span></p></div>
+    <div><h4><span data-en>Biomedical engineering</span><span data-es>Ingeniería biomédica</span></h4><p><span data-en>Medical devices, hospital infrastructure, clinical workflows</span><span data-es>Equipos médicos, infraestructura hospitalaria, flujos clínicos</span></p></div>
+  </div>
+</div></section>
+
+<section><div class="wrap">
+  <h2><span data-en>Currently</span><span data-es>Ahora mismo</span></h2>
+  <div class="now"><span class="pulse" aria-hidden="true"></span>
+    <p><span data-en>Comparing CNN and Transformer segmentation models (U-Net++, DeepLabv3+, Swin-UNet) to localize malignant microcalcifications. I train on CBIS-DDSM + INbreast and test on an external dataset; the next step is combining the CC and MLO views to estimate their approximate 3D position.</span>
+    <span data-es>Comparo modelos de segmentación CNN y Transformer (U-Net++, DeepLabv3+, Swin-UNet) para localizar microcalcificaciones malignas. Entreno con CBIS-DDSM + INbreast y pruebo con un dataset externo; el siguiente paso es combinar las vistas CC y MLO para estimar su posición 3D aproximada.</span></p>
+  </div>
+</div></section>
+</main>
+
+<footer id="contact"><div class="wrap">
+  <h2><span data-en>Contact</span><span data-es>Contacto</span></h2>
+  <p><span data-en>Open to remote roles in machine learning for healthcare and medical imaging.</span><span data-es>Abierto a roles remotos en machine learning para salud e imágenes médicas.</span></p>
+  <div class="contact">
+    <a class="btn primary" href="mailto:nicovocal@live.com">nicovocal@live.com</a>
+    <a class="btn" href="https://github.com/nicovocal-jpg">GitHub ↗</a>
+    <!-- <a class="btn" href="https://www.linkedin.com/in/YOUR-HANDLE">LinkedIn ↗</a> -->
+  </div>
+  <p>© 2026 Nicolás Villarroel Vocal</p>
+</div></footer>
+
+<script>
+(function(){
+  var html=document.documentElement, btn=document.getElementById('lang');
+  function set(l){ html.lang=l; btn.textContent = l==='en' ? 'ES' : 'EN';
+    try{localStorage.setItem('lang',l)}catch(e){} }
+  var saved=null; try{saved=localStorage.getItem('lang')}catch(e){}
+  set(saved || ((navigator.language||'').slice(0,2)==='es' ? 'es' : 'en'));
+  btn.addEventListener('click',function(){ set(html.lang==='en'?'es':'en'); });
+})();
+</script>
+</body>
+</html>

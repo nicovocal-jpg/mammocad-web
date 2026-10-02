@@ -1,0 +1,10 @@
+# Minimal dependencies for the Python backend (backend/*.py) and tests
+tensorflow==2.8.0
+numpy==1.23.5
+pydicom==2.3.0
+opencv-python==4.11.0.86
+Pillow==8.4.0
+ultralytics==8.3.121
+torch==2.7.0
+torchvision==0.22.0
+pytest

@@ -1,0 +1,21 @@
+# ---- Patient / imaging data: NEVER commit ----
+*.dcm
+storage/
+test_images/
+detections/
+
+# ---- Original DB dump (contains real users). Use database/schema.sql ----
+php_login_database.sql
+
+# ---- Model weights: upload them to a GitHub Release ----
+modelo/
+*.h5
+*.pt
+
+# ---- Environment / tooling ----
+.env
+requirements.txt
+__pycache__/
+*.pyc
+.pytest_cache/
+node_modules/
